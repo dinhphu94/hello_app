@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page]).per_page(5)
   end
 
   def new
@@ -38,14 +39,6 @@ class UsersController < ApplicationController
     else 
       render 'edit'
     end
-  end
-
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please login!"
-      redirect_to login_url
-    end 
   end
 
   def correct_user
