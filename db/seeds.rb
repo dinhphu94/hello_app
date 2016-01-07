@@ -19,8 +19,10 @@ User.create!(name:  "Example User",
 end
 users = User.order(:created_at).take(6)
 20.times do
+  title = Faker::Lorem.sentence(1)
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.microposts.create!(content: content) }
+
+  users.each { |user| user.entries.create!(title: title,content: content) }
 end
 
 # Following relationships

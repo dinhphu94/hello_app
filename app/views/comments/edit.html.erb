@@ -1,0 +1,16 @@
+<div class="row">
+<div class="col-md-2">
+</div>
+<div class="col-md-10">
+<h1>Edit comment</h1>
+<%= form_for(@entry, @comment) do |f| %>
+  <div class="field">
+  <%= render 'shared/error_messages', object: f.object %>
+    <%= f.text_area :content, placeholder: "edit comment...", required: true %>
+    <%= f.hidden_field :entry_id,  value: @entry.id %>
+   
+  </div>
+  <%= f.submit "Save change", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>

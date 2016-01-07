@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # Don't care if the mailer can't send.
   config.action_mailer.delivery_method = :smtp
-  host = 'https://chapter10.herokuapp.com/'
+  host = 'https://framgia-blog-demo.herokuapp.com/'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true

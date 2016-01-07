@@ -1,0 +1,32 @@
+<% provide(:title, 'Entry') %>
+<div class="row">
+	<div class="col-md-8 col-sm-8 col-xs-12">
+		<h1 style="text-align: left;"><%= @entry.title %></h1>
+		<span class="timestamp">
+			Posted <%= time_ago_in_words(@entry.created_at) %> ago by <%= link_to @entry.user.name, @entry.user %>
+		</span>
+		&nbsp;
+		</hr>
+		<p style="margin-top: 10px" >
+			<%=  @entry.content %>
+			<br>
+		
+			<hr>
+		</p>
+		&nbsp;
+		<% if logged_in? %>
+			<h2>Add Comment:</h2>
+		    <%= form_for(@comment, remote: true, :url => entry_comments_path(@entry)) do |f| %>
+		        <%= f.text_area :content, placeholder: "Compose new comment...", class: "form-control", :id => "comment-text-field-id" %>
+		        <%= f.submit "Comment", class: "btn btn-primary" %>
+		    <% end %>
+		<% else %>
+			<h4>Login to comment</h4>
+		<% end %>
+	    <ol class="comments" id="comment_id">
+			<% if @comments.any? %>
+			    <%= render @comments %>
+			<% end %>
+		</ol>
+	</div>
+</div>
